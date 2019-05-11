@@ -1,8 +1,12 @@
 export default class Attribute{
 
-    attributeName : string 
-    constructor(attributeName : string){
+    attributeName : string
+    
+    attributeStats : any
+    
+    constructor(attributeName : string, attributeStats : any){
         this.attributeName = attributeName
+        this.attributeStats = attributeStats
     }
 
 }
