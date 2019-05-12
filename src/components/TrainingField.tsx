@@ -3,6 +3,7 @@ import TrainingFile from '../model/TrainingFile'
 import Attribute from '../model/Attribute'
 import FileUploader from './FileUploader'
 import Instances from './Instances';
+import Classifier from './Classifier';
 
 
 export default class TrainingField extends React.Component<any, any>{
@@ -30,7 +31,10 @@ export default class TrainingField extends React.Component<any, any>{
 
     render() {
         if (this.state.hasUploadedTrainingFile) {
-            return <Instances trainingFile={this.state.trainingFile}/>
+            return <div>
+                <Instances trainingFile={this.state.trainingFile} />
+                <Classifier />
+            </div>
         } else {
             return <FileUploader setTrainingFileAttributes={this.setTrainingFileAttributes} />
         }
