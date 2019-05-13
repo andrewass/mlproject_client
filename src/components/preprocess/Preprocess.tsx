@@ -1,12 +1,10 @@
 import * as React from 'react'
-import TrainingFile from '../model/TrainingFile'
-import Attribute from '../model/Attribute'
-import FileUploader from './FileUploader'
+import FileUploader from './FileUploader';
+import TrainingFile from '../../model/TrainingFile';
+import Attribute from '../../model/Attribute';
 import Instances from './Instances';
-import Classifier from './Classifier';
 
-
-export default class TrainingField extends React.Component<any, any>{
+export default class Preprocess extends React.Component<any, any>{
 
     constructor(props: any) {
         super(props)
@@ -30,14 +28,10 @@ export default class TrainingField extends React.Component<any, any>{
     }
 
     render() {
-        if (this.state.hasUploadedTrainingFile) {
-            return <div>
-                <Instances trainingFile={this.state.trainingFile} />
-                <Classifier />
+        return (
+            <div>
+                <FileUploader setTrainingFileAttributes={this.setTrainingFileAttributes} />
+                <Instances trainingFile={this.state.trainingFile}/>
             </div>
-        } else {
-            return <FileUploader setTrainingFileAttributes={this.setTrainingFileAttributes} />
-        }
-    }
-
+        )}
 }

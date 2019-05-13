@@ -1,17 +1,22 @@
 import * as React from 'react'
-import Attribute from '../model/Attribute'
+import Attribute from '../../model/Attribute'
 
 export default class Instances extends React.Component<any, any>{
 
     render() {
-        return (
-            <div>
-                {this.generateTable(this.props.trainingFile.attributeList)}
-            </div >
-        )
+        if (!this.props.trainingFile.attributeList) {
+            return (<div></div>)
+        }
+        else {
+            return (
+                <div>
+                    {this.generateTable(this.props.trainingFile.attributeList)}
+                </div >
+            )
+        }
     }
 
-    generateTable(row: any) {   
+    generateTable(row: any) {
         return (
             <table>
                 <tbody>
