@@ -1,8 +1,12 @@
 import React from 'react'
 import axios from 'axios'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import Dropdown from 'react-bootstrap/Dropdown'
+import Select from 'react-select'
 
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+]
 
 export default class Classifier extends React.Component<any, any>{
 
@@ -16,6 +20,12 @@ export default class Classifier extends React.Component<any, any>{
 
     componentDidMount() {
         this.fillClassifierList()
+    }
+
+    handleChange = (selectedOption: any) => {
+        this.setState({
+            selectedClassifier : selectedOption
+        })
     }
 
     fillClassifierList() {
@@ -32,7 +42,10 @@ export default class Classifier extends React.Component<any, any>{
     render() {
         return (
             <div>
-              <h1>Classifier Component</h1>
+                <h1>Classifier Component</h1>
+                <Select onChange={this.handleChange}
+                    value={this.state.selectedClassifier}
+                    options={this.state.classifierList} />
             </div>
         )
     }

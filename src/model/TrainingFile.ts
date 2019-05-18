@@ -6,11 +6,17 @@ export default class TrainingFile{
     attributeList: Attribute[];
     
     constructor(filename : string){
-        this.filename  = "filenameRandom"
+        this.filename  = ""
         this.attributeList = []
     }
 
     addAttribute(attribute : Attribute){
         this.attributeList.push(attribute)
+    }
+
+    removeAttributes(attributes: any){
+        attributes.forEach(it => {
+            alert(it.attributeName)
+        });
     }
 }
