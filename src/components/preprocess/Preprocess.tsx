@@ -2,7 +2,7 @@ import * as React from 'react'
 import FileUploader from './FileUploader';
 import TrainingFile from '../../model/TrainingFile';
 import Attribute from '../../model/Attribute';
-import Instances from './Instances';
+import Attributes from './Attributes';
 
 export default class Preprocess extends React.Component<any, any>{
 
@@ -13,7 +13,6 @@ export default class Preprocess extends React.Component<any, any>{
             hasUploadedTrainingFile: false,
         }
         this.setTrainingFileAttributes = this.setTrainingFileAttributes.bind(this)
-        this.removeAttributeFromTrainingFile = this.removeAttributeFromTrainingFile.bind(this)
     }
 
     setTrainingFileAttributes(data: any) {
@@ -29,16 +28,12 @@ export default class Preprocess extends React.Component<any, any>{
         })
     }
 
-    removeAttributeFromTrainingFile(attributeList : any){
-        this.state.trainingFile.removeAttributes(attributeList)
-    }
-
     render() {
         return (
             <div>
                 <FileUploader setTrainingFileAttributes={this.setTrainingFileAttributes} />
-                <Instances trainingFile={this.state.trainingFile} sessionId={this.props.sessionId}
-                    removeAttributes={this.removeAttributeFromTrainingFile} />
+                <Attributes trainingFile={this.state.trainingFile} sessionId={this.props.sessionId}
+                    setTrainingFileAttributes={this.setTrainingFileAttributes} />
             </div>
         )
     }

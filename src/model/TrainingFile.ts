@@ -14,7 +14,7 @@ export default class TrainingFile{
         this.attributeList.push(attribute)
     }
 
-    removeAttributes(attributes: any){
+    refreshAttributes(attributes: any){
         attributes.forEach(it => {
             alert(it.attributeName)
         });
