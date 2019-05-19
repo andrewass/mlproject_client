@@ -1,5 +1,5 @@
-import * as React from "react"
-import axios from "axios"
+import * as React from 'react'
+import axios from 'axios'
 
 
 export default class Attributes extends React.Component<any, any>{
@@ -49,8 +49,7 @@ export default class Attributes extends React.Component<any, any>{
                             <td>Missing Values</td>
                         </tr>
                         {row.map((row: any) => <tr>
-                            <td><input className="checkbox" id={row.attributeName} type="checkbox" onChange={this.setSelectedAttribute}
-                                defaultChecked={this.state.checkedItems.has(row.attributeName)} /></td>
+                            <td><input className="checkbox" id={row.attributeName} type="checkbox" onChange={this.setSelectedAttribute}/></td>
                             <td>{row.attributeName}</td>
                             <td>{row.attributeStats.distinctCount}</td>
                             <td>{row.attributeStats.totalCount}</td>
@@ -64,7 +63,7 @@ export default class Attributes extends React.Component<any, any>{
 
     unCheck() {
         var checkedBoxes: any = document.getElementsByClassName("checkbox");
-        for(let item of checkedBoxes){
+        for (let item of checkedBoxes) {
             item.checked = false;
         }
     }
@@ -78,7 +77,7 @@ export default class Attributes extends React.Component<any, any>{
                 </div >
             )
         }
-        else{
+        else {
             return null
         }
     }

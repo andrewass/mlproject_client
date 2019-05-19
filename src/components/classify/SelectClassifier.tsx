@@ -2,13 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import Select from 'react-select'
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-]
 
-export default class Classifier extends React.Component<any, any>{
+export default class SelectClassifier extends React.Component<any, any>{
 
     constructor(props: any) {
         super(props)
@@ -42,9 +37,9 @@ export default class Classifier extends React.Component<any, any>{
     render() {
         return (
             <div>
-                <h1>Classifier Component</h1>
+                <h3>Classifier Component</h3>
                 <Select onChange={this.handleChange}
-                    value={this.state.selectedClassifier}
+                    value={this.props.classAttribute}
                     options={this.state.classifierList} />
             </div>
         )
