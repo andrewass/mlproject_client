@@ -1,6 +1,6 @@
 import * as React from 'react'
 import SelectClassifier from './SelectClassifier'
-import TestOptions from './TestOptions'
+import Evaluate from './Evaluate'
 import SelectClassAttribute from './SelectClassAttribute';
 
 export default class Classity extends React.Component<any, any>{
@@ -25,7 +25,7 @@ export default class Classity extends React.Component<any, any>{
                 <SelectClassifier />
                 <SelectClassAttribute setClassAttribute={this.setClassAttribute} classAttribute={this.state.classAttribute}
                     trainingFile={this.props.trainingFile} />
-                <TestOptions />
+                <Evaluate sessionId={this.props.sessionId}/>
             </div>
         )
     }

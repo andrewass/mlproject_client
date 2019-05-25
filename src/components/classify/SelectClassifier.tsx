@@ -11,6 +11,7 @@ export default class SelectClassifier extends React.Component<any, any>{
             selectedClassifier: "",
             classifierList: []
         }
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
@@ -27,19 +28,28 @@ export default class SelectClassifier extends React.Component<any, any>{
         const url = "http://localhost:8080/get-classifiers"
         axios.get(url)
             .then((response: any) => {
-                this.setState({
-                    classifierList: response.data.classifiers
-                })
+                this.setValueAndLabelOnClassifiers(response.data.classifiers)
             })
             .catch((error: any) => { console.log(error) })
+    }   
+
+    setValueAndLabelOnClassifiers(classifiers : any){
+        var tempList = [] as any[]
+        for (var i in classifiers) {
+            tempList.push({ 
+                value : classifiers[i], 
+                label : classifiers[i]
+            })
+        }
+        this.setState({classifierList : tempList})
     }
 
+   
     render() {
         return (
             <div>
                 <h3>Classifier Component</h3>
                 <Select onChange={this.handleChange}
-                    value={this.props.classAttribute}
                     options={this.state.classifierList} />
             </div>
         )
