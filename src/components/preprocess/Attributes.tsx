@@ -9,11 +9,12 @@ export default class Attributes extends React.Component<any, any>{
         this.state = {
             checkedItems: new Set()
         }
-        this.setSelectedAttribute = this.setSelectedAttribute.bind(this)
+        this.setMarkedAttribute = this.setMarkedAttribute.bind(this)
         this.sendAttributesToUpdate = this.sendAttributesToUpdate.bind(this)
+        this.handleTableRowClick = this.handleTableRowClick.bind(this)
     }
 
-    setSelectedAttribute(e: any) {
+    setMarkedAttribute(e: any) {
         if (this.state.checkedItems.has(e.target.id)) {
             this.state.checkedItems.delete(e.target.id)
         } else {
@@ -36,6 +37,10 @@ export default class Attributes extends React.Component<any, any>{
             .catch((error) => { alert(error) })
     }
 
+    handleTableRowClick(event: any) {
+        this.props.setSelectedAttribute(event.currentTarget.id)
+    }
+
     generateTable(row: any) {
         return (
             <div>
@@ -48,8 +53,8 @@ export default class Attributes extends React.Component<any, any>{
                             <td>Total Values</td>
                             <td>Missing Values</td>
                         </tr>
-                        {row.map((row: any) => <tr>
-                            <td><input className="checkbox" id={row.attributeName} type="checkbox" onChange={this.setSelectedAttribute}/></td>
+                        {row.map((row: any) => <tr onClick={this.handleTableRowClick}>
+                            <td><input className="checkbox" id={row.attributeName} type="checkbox" onChange={this.setMarkedAttribute} /></td>
                             <td>{row.attributeName}</td>
                             <td>{row.attributeStats.distinctCount}</td>
                             <td>{row.attributeStats.totalCount}</td>

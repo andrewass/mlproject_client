@@ -39,7 +39,6 @@ export default class App extends React.Component<any, any>{
           <Route path="/preprocess" render={(props) =>
             <Preprocess sessionId={this.state.sessionId} setSessionId={this.setSessionId}
               trainingFile={this.state.trainingFile} setTrainingFile={this.setTrainingFile} />} />
-          
           <Route exact path="/classify" render={(props) => 
            <Classify sessionId={this.state.sessionId} trainingFile={this.state.trainingFile} />} />
         </Switch>

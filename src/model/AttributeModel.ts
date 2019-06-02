@@ -1,4 +1,4 @@
-export default class Attribute{
+export default class AttributeModel{
 
     attributeName : string
     
@@ -8,5 +8,4 @@ export default class Attribute{
         this.attributeName = attributeName
         this.attributeStats = attributeStats
     }
-
 }

@@ -1,22 +1,16 @@
-import Attribute from "./Attribute";
+import AttributeModel from "./AttributeModel";
 
 export default class TrainingFile{
     
     filename: string;
-    attributeList: Attribute[];
+    attributeList: AttributeModel[];
     
     constructor(filename : string){
         this.filename  = ""
         this.attributeList = []
     }
 
-    addAttribute(attribute : Attribute){
+    addAttribute(attribute : AttributeModel){
         this.attributeList.push(attribute)
-    }
-
-    refreshAttributes(attributes: any){
-        attributes.forEach(it => {
-            alert(it.attributeName)
-        });
     }
 }

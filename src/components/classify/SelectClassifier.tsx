@@ -8,7 +8,6 @@ export default class SelectClassifier extends React.Component<any, any>{
     constructor(props: any) {
         super(props)
         this.state = {
-            selectedClassifier: "",
             classifierList: []
         }
         this.handleChange = this.handleChange.bind(this)
@@ -19,9 +18,7 @@ export default class SelectClassifier extends React.Component<any, any>{
     }
 
     handleChange = (selectedOption: any) => {
-        this.setState({
-            selectedClassifier : selectedOption
-        })
+        this.props.setClassifier(selectedOption)
     }
 
     fillClassifierList() {
