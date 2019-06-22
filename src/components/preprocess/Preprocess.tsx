@@ -3,13 +3,17 @@ import FileUploader from './FileUploader'
 import TrainingFile from '../../model/TrainingFile'
 import AttributeModel from '../../model/AttributeModel'
 import Attributes from './Attributes'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Edit from './Edit'
+import { NavTab } from 'react-router-tabs';
+import AttributeInformation from './AttributeInformation';
 
 export default class Preprocess extends React.Component<any, any>{
 
     constructor(props: any) {
         super(props)
         this.state = {
-            selectedAttribute : []
+            selectedAttribute: null
         }
         this.setTrainingFileAttributes = this.setTrainingFileAttributes.bind(this)
         this.setSelectedAttribute = this.setSelectedAttribute.bind(this)
@@ -25,11 +29,14 @@ export default class Preprocess extends React.Component<any, any>{
         this.props.setTrainingFile(createdTrainingFile)
     }
 
-    setSelectedAttribute(attribute : any){
-        alert(attribute.attributeName)
+    setSelectedAttribute(attribute: AttributeModel) {
         this.setState({
-            selectedAttribute : attribute
+            selectedAttribute: attribute
         })
+    }
+
+    openInstanceEditView() {
+        alert("Opening edit window")
     }
 
     render() {
@@ -37,8 +44,10 @@ export default class Preprocess extends React.Component<any, any>{
             <div>
                 <FileUploader setTrainingFileAttributes={this.setTrainingFileAttributes} />
                 <Attributes trainingFile={this.props.trainingFile} sessionId={this.props.sessionId}
-                    setTrainingFileAttributes={this.setTrainingFileAttributes} 
+                    setTrainingFileAttributes={this.setTrainingFileAttributes}
                     setSelectedAttribute={this.setSelectedAttribute} />
+                <AttributeInformation selectedAttribute={this.state.selectedAttribute} />
+                <button onClick={this.openInstanceEditView}>Edit Instances</button>
             </div>
         )
     }

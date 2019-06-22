@@ -1,5 +1,6 @@
 import * as React from 'react'
 import axios from 'axios'
+import Attribute from './Attribute';
 
 
 export default class Attributes extends React.Component<any, any>{
@@ -11,7 +12,6 @@ export default class Attributes extends React.Component<any, any>{
         }
         this.setMarkedAttribute = this.setMarkedAttribute.bind(this)
         this.sendAttributesToUpdate = this.sendAttributesToUpdate.bind(this)
-        this.handleTableRowClick = this.handleTableRowClick.bind(this)
     }
 
     setMarkedAttribute(e: any) {
@@ -37,29 +37,17 @@ export default class Attributes extends React.Component<any, any>{
             .catch((error) => { alert(error) })
     }
 
-    handleTableRowClick(event: any) {
-        this.props.setSelectedAttribute(event.currentTarget.id)
-    }
-
     generateTable(row: any) {
         return (
             <div>
-                <table>
+                <table cellPadding="15">
                     <tbody>
                         <tr>
-                            <td>Select</td>
-                            <td>Attribute Name</td>
-                            <td>Distinct Values</td>
-                            <td>Total Values</td>
-                            <td>Missing Values</td>
+                            <td>Attributes</td>
                         </tr>
-                        {row.map((row: any) => <tr onClick={this.handleTableRowClick}>
-                            <td><input className="checkbox" id={row.attributeName} type="checkbox" onChange={this.setMarkedAttribute} /></td>
-                            <td>{row.attributeName}</td>
-                            <td>{row.attributeStats.distinctCount}</td>
-                            <td>{row.attributeStats.totalCount}</td>
-                            <td>{row.attributeStats.missingCount}</td>
-                        </tr>)}
+                        {row.map((row: any) =>
+                            <Attribute attribute={row} setMarkedAttribute={this.setMarkedAttribute} 
+                            setSelectedAttribute={this.props.setSelectedAttribute} />)}
                     </tbody>
                 </table>
             </div>
@@ -87,4 +75,3 @@ export default class Attributes extends React.Component<any, any>{
         }
     }
 }
-

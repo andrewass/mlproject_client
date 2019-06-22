@@ -32,6 +32,7 @@ export default class Classity extends React.Component<any, any>{
                     trainingFile={this.props.trainingFile} />
                 <Evaluate sessionId={this.props.sessionId} classAttribute={this.state.classAttribute}
                     classifier={this.state.classifier.value} />
+
             </div>
         )
     }
