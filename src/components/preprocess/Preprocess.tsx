@@ -3,20 +3,16 @@ import FileUploader from './FileUploader'
 import TrainingFile from '../../model/TrainingFile'
 import AttributeModel from '../../model/AttributeModel'
 import Attributes from './Attributes'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Edit from './Edit'
-import { NavTab } from 'react-router-tabs';
 import AttributeInformation from './AttributeInformation';
+import { Link } from 'react-router-dom';
 
 export default class Preprocess extends React.Component<any, any>{
 
     constructor(props: any) {
         super(props)
-        this.state = {
-            selectedAttribute: null
-        }
+    
         this.setTrainingFileAttributes = this.setTrainingFileAttributes.bind(this)
-        this.setSelectedAttribute = this.setSelectedAttribute.bind(this)
+        
     }
 
     setTrainingFileAttributes(data: any) {
@@ -29,11 +25,6 @@ export default class Preprocess extends React.Component<any, any>{
         this.props.setTrainingFile(createdTrainingFile)
     }
 
-    setSelectedAttribute(attribute: AttributeModel) {
-        this.setState({
-            selectedAttribute: attribute
-        })
-    }
 
     openInstanceEditView() {
         alert("Opening edit window")
@@ -44,10 +35,8 @@ export default class Preprocess extends React.Component<any, any>{
             <div>
                 <FileUploader setTrainingFileAttributes={this.setTrainingFileAttributes} />
                 <Attributes trainingFile={this.props.trainingFile} sessionId={this.props.sessionId}
-                    setTrainingFileAttributes={this.setTrainingFileAttributes}
-                    setSelectedAttribute={this.setSelectedAttribute} />
-                <AttributeInformation selectedAttribute={this.state.selectedAttribute} />
-                <button onClick={this.openInstanceEditView}>Edit Instances</button>
+                    setTrainingFileAttributes={this.setTrainingFileAttributes} />
+                <Link to="/preprocess/edit"><button>Edit</button></Link>
             </div>
         )
     }

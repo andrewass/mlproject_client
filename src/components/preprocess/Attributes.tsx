@@ -1,6 +1,8 @@
 import * as React from 'react'
 import axios from 'axios'
 import Attribute from './Attribute';
+import AttributeModel from '../../model/AttributeModel';
+import AttributeInformation from './AttributeInformation';
 
 
 export default class Attributes extends React.Component<any, any>{
@@ -8,10 +10,12 @@ export default class Attributes extends React.Component<any, any>{
     constructor(props: any) {
         super(props)
         this.state = {
-            checkedItems: new Set()
+            checkedItems: new Set(),
+            selectedAttribute : null
         }
         this.setMarkedAttribute = this.setMarkedAttribute.bind(this)
         this.sendAttributesToUpdate = this.sendAttributesToUpdate.bind(this)
+        this.setSelectedAttribute = this.setSelectedAttribute.bind(this)
     }
 
     setMarkedAttribute(e: any) {
@@ -20,6 +24,12 @@ export default class Attributes extends React.Component<any, any>{
         } else {
             this.state.checkedItems.add(e.target.id)
         }
+    }
+
+    setSelectedAttribute(attribute: AttributeModel) {
+        this.setState({
+            selectedAttribute: attribute
+        })
     }
 
     sendAttributesToUpdate() {
@@ -47,9 +57,10 @@ export default class Attributes extends React.Component<any, any>{
                         </tr>
                         {row.map((row: any) =>
                             <Attribute attribute={row} setMarkedAttribute={this.setMarkedAttribute} 
-                            setSelectedAttribute={this.props.setSelectedAttribute} />)}
+                            setSelectedAttribute={this.setSelectedAttribute} />)}
                     </tbody>
                 </table>
+                <AttributeInformation selectedAttribute={this.state.selectedAttribute} />
             </div>
         )
     }
