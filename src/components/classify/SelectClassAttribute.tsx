@@ -10,7 +10,7 @@ export default class SelectClassAttribute extends React.Component<any, any>{
         this.state = {
             attributeList: []
         }
-        this.handleChange = this.handleChange.bind(this)
+        this.onChange = this.onChange.bind(this)
     }
 
     componentDidMount() {
@@ -24,7 +24,7 @@ export default class SelectClassAttribute extends React.Component<any, any>{
     }
 
 
-    handleChange(selectedOption : any) {
+    onChange(selectedOption : any) {
         this.props.setClassAttribute(selectedOption.value)
     }
 
@@ -32,7 +32,7 @@ export default class SelectClassAttribute extends React.Component<any, any>{
         return (
             <div>
                 <h3>Select Class Attribute</h3>
-                <Select onChange={this.handleChange}
+                <Select onChange={this.onChange}
                     options={this.state.attributeList} />
             </div>
         )

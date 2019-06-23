@@ -43,6 +43,7 @@ export default class Attributes extends React.Component<any, any>{
         axios.post(url, request)
             .then((response) => {
                 this.props.setTrainingFileAttributes(response.data)
+                this.props.setInstances(response.data.instances)
             })
             .catch((error) => { alert(error) })
     }

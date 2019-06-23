@@ -3,16 +3,13 @@ import FileUploader from './FileUploader'
 import TrainingFile from '../../model/TrainingFile'
 import AttributeModel from '../../model/AttributeModel'
 import Attributes from './Attributes'
-import AttributeInformation from './AttributeInformation';
 import { Link } from 'react-router-dom';
 
 export default class Preprocess extends React.Component<any, any>{
 
     constructor(props: any) {
         super(props)
-    
         this.setTrainingFileAttributes = this.setTrainingFileAttributes.bind(this)
-        
     }
 
     setTrainingFileAttributes(data: any) {
@@ -25,17 +22,13 @@ export default class Preprocess extends React.Component<any, any>{
         this.props.setTrainingFile(createdTrainingFile)
     }
 
-
-    openInstanceEditView() {
-        alert("Opening edit window")
-    }
-
     render() {
         return (
             <div>
-                <FileUploader setTrainingFileAttributes={this.setTrainingFileAttributes} />
+                <FileUploader setTrainingFileAttributes={this.setTrainingFileAttributes}
+                    setInstances={this.props.setInstances} />
                 <Attributes trainingFile={this.props.trainingFile} sessionId={this.props.sessionId}
-                    setTrainingFileAttributes={this.setTrainingFileAttributes} />
+                    setTrainingFileAttributes={this.setTrainingFileAttributes} setInstances={this.props.setInstances}  />
                 <Link to="/preprocess/edit"><button>Edit</button></Link>
             </div>
         )

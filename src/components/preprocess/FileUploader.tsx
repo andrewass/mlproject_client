@@ -27,7 +27,10 @@ export default class FileUploader extends React.Component<any, any>{
 
     uploadFile(url: any, formData: any) {
         axios.post(url, formData)
-            .then((response) => { this.props.setTrainingFileAttributes(response.data) })
+            .then((response) => { 
+                this.props.setTrainingFileAttributes(response.data)
+                this.props.setInstances(response.data.instances)
+            })
             .catch((error) => { console.log(error) })
     }
 
